@@ -8,13 +8,13 @@ class MCIM_Auth
 {
     
     var $settings = array();
-	var $name = 'MoxieCode ImageManager Auth Extension';
-	var $classname = 'MCIM_Auth';
-	var $version = '1.0.1';
-	var $description = "Sets up & tears down session hash for 
-	        enabling MoxieCode's image manager";
-	var $settings_exist = 'y';
-	var $docs_url = '';
+  var $name = 'MoxieCode ImageManager Auth Extension';
+  var $classname = 'MCIM_Auth';
+  var $version = '1.0.1';
+  var $description = "Sets up & tears down session hash for 
+          enabling MoxieCode's image manager";
+  var $settings_exist = 'y';
+  var $docs_url = '';
     
     // Construct
     function MCIM_Auth($settings='')
@@ -28,47 +28,47 @@ class MCIM_Auth
         global $DB;
         // add hooks
         $DB->query($DB->insert_string('exp_extensions',
-    			array(
-    			'extension_id'	=> '',
-    			'class'			=> $this->classname,
-    			'method'		=> "_create_mcim_session",
-    			'hook'			=> "cp_member_login",
-    			'settings'		=> '',
-    			'priority'		=> 10,
-    			'version'		=> $this->version,
-    			'enabled'		=> "y"
-    			)
-    		)
-    	);
-    	$DB->query($DB->insert_string('exp_extensions',
-    			array(
-    			'extension_id'	=> '',
-    			'class'			=> $this->classname,
-    			'method'		=> "_destroy_mcim_session",
-    			'hook'			=> "cp_member_logout",
-    			'settings'		=> '',
-    			'priority'		=> 10,
-    			'version'		=> $this->version,
-    			'enabled'		=> "y"
-    			)
-    		)
-    	);
-    	// sorta hacky... TODO rewrite settings form
-    	$DB->query($DB->insert_string('exp_extensions',
-    			array(
-    			'extension_id'	=> '',
-    			'class'			=> $this->classname,
-    			'method'		=> "_update_mcim_session",
-    			'hook'			=> "cp_display_page_navigation",
-    			'settings'		=> '',
-    			'priority'		=> 10,
-    			'version'		=> $this->version,
-    			'enabled'		=> "y"
-    			)
-    		)
-    	);
+          array(
+          'extension_id'  => '',
+          'class'     => $this->classname,
+          'method'    => "_create_mcim_session",
+          'hook'      => "cp_member_login",
+          'settings'    => '',
+          'priority'    => 10,
+          'version'   => $this->version,
+          'enabled'   => "y"
+          )
+        )
+      );
+      $DB->query($DB->insert_string('exp_extensions',
+          array(
+          'extension_id'  => '',
+          'class'     => $this->classname,
+          'method'    => "_destroy_mcim_session",
+          'hook'      => "cp_member_logout",
+          'settings'    => '',
+          'priority'    => 10,
+          'version'   => $this->version,
+          'enabled'   => "y"
+          )
+        )
+      );
+      // sorta hacky... TODO rewrite settings form
+      $DB->query($DB->insert_string('exp_extensions',
+          array(
+          'extension_id'  => '',
+          'class'     => $this->classname,
+          'method'    => "_update_mcim_session",
+          'hook'      => "cp_display_page_navigation",
+          'settings'    => '',
+          'priority'    => 10,
+          'version'   => $this->version,
+          'enabled'   => "y"
+          )
+        )
+      );
         // log me in when I activate
-    	$this->_create_mcim_session();
+      $this->_create_mcim_session();
     }
     
     // Update Extension
